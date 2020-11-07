@@ -23,14 +23,14 @@ I don't specialize in front-end technologies. Therefore, any help with the devel
 
 ## How to run
 1. Install [NPM](https://www.npmjs.com/get-npm)
-2. Go to `.src/my-meetings-app/` path
-3. Execute following command:
+2. Execute following command from root path:
 
 ```shell
 npm start
 ```
+3. Application will start and will be hosted on **http://localhost:3000/** address. Backend should be hosted on **http://localhost:5000/** address.
 
-4. Application will start and will be hosted on **http://localhost:3000/** address. Backend should be hosted on **http://localhost:5000/** address.
+More information in [How To Run](HowToRun.md) file.
 
 ## Author
 
