@@ -13,7 +13,7 @@ type LoginFormProps = {
 export function LoginForm(props: LoginFormProps) {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
-    const [errorMessage , setErrorMessage] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
 
@@ -54,7 +54,7 @@ export function LoginForm(props: LoginFormProps) {
             <form onSubmit={handleSubmit}>
                 <div>
                     <div>Login: </div><div><input type="text" value={login} onChange={handleLoginChange} /></div>
-                    <div>Password: </div><div><input type="password" value={password} onChange={handlePasswordChange} /></div>
+                    <div>Password: </div><div><input type="password" autoComplete="password" value={password} onChange={handlePasswordChange} /></div>
                     <div><input type="submit" value="Log in" /></div>
                 </div>
             </form>

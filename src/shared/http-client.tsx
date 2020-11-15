@@ -1,10 +1,9 @@
-import { stringify } from "querystring";
 import { ApplicationSettings } from "../configuration/application-settings";
 import { AuthenticationService } from "../login/authentication/authentication-service";
 
 export class HttpClient {
-    public static async post<TResult>(resource: string, body: string) : Promise<TResult> {
-        
+    public static async post<TResult>(resource: string, body: string): Promise<TResult> {
+
         const headers = HttpClient.GetHeaders();
         var requestOptions: RequestInit = {
             method: 'POST',
@@ -24,8 +23,8 @@ export class HttpClient {
         }
     }
 
-    public static async postForm<TResult>(resource: string, body: FormData) : Promise<TResult> {
-        
+    public static async postForm<TResult>(resource: string, body: FormData): Promise<TResult> {
+
         const headers = HttpClient.GetHeaders(null);
         var requestOptions: RequestInit = {
             method: 'POST',
@@ -38,14 +37,14 @@ export class HttpClient {
 
         const response = await fetch(url, requestOptions);
         if (response.status === 200) {
-                return Promise.resolve(response.json());
+            return Promise.resolve(response.json());
         }
         else {
             return Promise.reject(new Error(response.statusText));
         }
     }
 
-    public static async patch<TResult>(resource: string, body: string | null) : Promise<TResult> {
+    public static async patch<TResult>(resource: string, body: string | null): Promise<TResult> {
         const headers = HttpClient.GetHeaders();
         var requestOptions: RequestInit = {
             method: 'PATCH',
@@ -58,22 +57,22 @@ export class HttpClient {
 
         const response = await fetch(url, requestOptions);
         if (response.status === 200) {
-            if(response.bodyUsed){
+            if (response.bodyUsed) {
                 return Promise.resolve(response.json());
             }
             else {
                 return response as any;
             }
-            
+
         }
         else {
             return Promise.reject(new Error(response.statusText));
         }
     }
 
-    
 
-    public static async get<TResult>(resource: string) : Promise<TResult> {
+
+    public static async get<TResult>(resource: string): Promise<TResult> {
         const headers = HttpClient.GetHeaders();
         var requestOptions: RequestInit = {
             method: 'GET',
@@ -96,16 +95,16 @@ export class HttpClient {
         }
     }
 
-    private static GetHeaders(contentType: null | string = 'application/json')  : Record<string, string> {
+    private static GetHeaders(contentType: null | string = 'application/json'): Record<string, string> {
         var token = AuthenticationService.getAccessToken();
 
         let headers: Record<string, string> = {};
 
-        if(token != null) {
+        if (token != null) {
             headers['Authorization'] = 'Bearer ' + token;
         }
 
-        if(contentType != null) {
+        if (contentType != null) {
             headers['Content-Type'] = contentType;
         }
 

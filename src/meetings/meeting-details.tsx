@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-    BrowserRouter as Router,
-    useLocation,
-    Link,
-    useParams,
-    useHistory
+    useParams
 } from "react-router-dom";
 import { HttpClient } from '../shared/http-client';
 import { MeetingAttendeeListProperties, MeetingAttendeesList } from './meeting-attendees-list';
@@ -30,7 +26,7 @@ interface MeetingDetails {
 
 interface MeetingDetailsUrlParams {
     meetingId: string;
-  }
+}
 
 export function MeetingDetails() {
     const { meetingId } = useParams<MeetingDetailsUrlParams>();
@@ -41,14 +37,12 @@ export function MeetingDetails() {
         loadDetails();
     }, []);
 
-    let history = useHistory();
-
     function loadDetails() {
         HttpClient.get<MeetingDetails>(`api/meetings/meetings/${meetingId}`)
             .then(response => setMeetingDetails(response));
     }
 
-    function getMeetingAttendeesListProperties() : MeetingAttendeeListProperties {
+    function getMeetingAttendeesListProperties(): MeetingAttendeeListProperties {
         return {
             meetingId: meetingId
         }

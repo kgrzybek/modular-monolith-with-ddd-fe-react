@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-    BrowserRouter as Router,
-    useLocation,
-    Link,
     useParams,
     useHistory
 } from "react-router-dom";
@@ -19,7 +16,7 @@ interface MeetingGroupDetails {
 
 interface MeetingGroupDetailsUrlParams {
     meetingGroupId: string;
-  }
+}
 
 export function MeetingGroupDetails() {
     const { meetingGroupId } = useParams<MeetingGroupDetailsUrlParams>();

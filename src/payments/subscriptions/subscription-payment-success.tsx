@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-    BrowserRouter as Router,
-    useLocation,
-    Link
+    useLocation
 } from "react-router-dom";
 import { HttpClient } from '../../shared/http-client';
 
@@ -25,12 +23,13 @@ export function SubscriptionPaymentSuccess() {
     }, []);
 
     function markSubscriptionPaymentAsPaid() {
-        if(paymentId != null) {
+        if (paymentId) {
             const request: MarkSubscriptionPaymentAsPaidRequest = {
                 paymentId: paymentId
             }
+
             HttpClient.post('api/payments/subscriptionPayments', JSON.stringify(request))
-            .then(() => setMessage('Payment successful'))
+                .then(() => setMessage('Payment successful'))
         }
     }
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { LoginControl } from './login/login-control';
 import {
@@ -94,8 +93,8 @@ function App() {
                             }
 
 
-                                <span><Link to="/emails">Emails</Link></span>
-                            
+                            <span><Link to="/emails">Emails</Link></span>
+
                         </div>
 
                         <Route exact path="/my-meeting-groups/" component={MyMeetingsGroups} />

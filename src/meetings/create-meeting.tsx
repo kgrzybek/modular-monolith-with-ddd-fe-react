@@ -1,9 +1,6 @@
-import { FormEvent, useState, ChangeEvent, useEffect } from 'react';
+import { FormEvent, useState } from 'react';
 import React from 'react';
 import {
-    BrowserRouter as Router,
-    Route,
-    Link,
     useParams
 } from 'react-router-dom';
 import DatePicker from "react-datepicker";
@@ -49,7 +46,7 @@ export function CreateMeeting() {
     const [guestsLimit, setGuestsLimit] = useState<number>(0);
     const [RSVPTermStartDate, setRSVPTermStartDate] = useState<any>(new Date());
     const [rsvpTermEndDate, setRSVPTermEndDate] = useState<any>(new Date());
-    const [eventFeeValue, setEventFeeValue] = useState<number | undefined>();
+    const [eventFeeValue] = useState<number | undefined>();
 
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -74,8 +71,7 @@ export function CreateMeeting() {
 
         HttpClient.post<any>('api/meetings/meetings', JSON.stringify(request))
             .then(() => afterSubmit())
-            .catch(onrejected => {
-            });
+            .catch(_ => { });
 
         event.preventDefault();
     }

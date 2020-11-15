@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
-    BrowserRouter as Router,
     useLocation,
     Link
 } from "react-router-dom";
@@ -13,7 +12,7 @@ export function SubscriptionPaymentStatus() {
         return new URLSearchParams(useLocation().search);
     }
 
-    function getSuccessLink() : string {
+    function getSuccessLink(): string {
         return `/subscription/payment-success?paymentId=${paymentId}`;
     }
 

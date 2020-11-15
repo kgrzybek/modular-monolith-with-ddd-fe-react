@@ -1,10 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import {
-    BrowserRouter as Router,
-    useLocation,
-    Link,
-    useHistory
-} from "react-router-dom";
 import { AuthenticationService } from '../login/authentication/authentication-service';
 import { HttpClient } from '../shared/http-client';
 
@@ -33,8 +27,6 @@ export function MeetingAttendeesList(props: MeetingAttendeeListProperties) {
         loadMeetingAttendees();
     }, []);
 
-    let history = useHistory();
-
     function loadMeetingAttendees() {
         HttpClient.get<Array<MeetingAttendee>>(`api/meetings/meetings/${props.meetingId}/attendees`)
             .then(response => setMeetingAttendees(response));
@@ -49,12 +41,12 @@ export function MeetingAttendeesList(props: MeetingAttendeeListProperties) {
     }
 
     function attendOnClick(): void {
-        const data : AddMeetingAttendeeRequest = {
+        const data: AddMeetingAttendeeRequest = {
             guestsNumber: 0
         }
-        
+
         HttpClient.post(`api/meetings/meetings/${props.meetingId}/attendees`, JSON.stringify(data))
-        .then(() => loadMeetingAttendees());
+            .then(() => loadMeetingAttendees());
     }
 
     function withdrawParticipationOnClick(): void {

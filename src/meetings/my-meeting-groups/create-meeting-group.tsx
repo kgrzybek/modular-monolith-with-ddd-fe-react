@@ -54,8 +54,7 @@ export function CreateMeetingGroup() {
 
         HttpClient.post<any>('api/meetings/MeetingGroupProposals', JSON.stringify(request))
             .then(() => setIsProposalSent(true))
-            .catch(onrejected => {
-            });
+            .catch(_ => { });
 
         event.preventDefault();
     }

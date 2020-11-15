@@ -1,25 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {
-    BrowserRouter as Router,
-    useLocation,
-    Link,
-    useParams,
-    useHistory
+    useParams
 } from "react-router-dom";
 import { HttpClient } from '../shared/http-client';
 
-interface MeetingGroupDetails {
-    id: string,
-    name: string,
-    description: string,
-    locationCity: string,
-    locationCountryCode: string,
-    membersCount: number
-}
-
 interface RegistrationConfirmUrlParams {
     registrationId: string;
-  }
+}
 
 export function RegistrationConfirm() {
     const { registrationId } = useParams<RegistrationConfirmUrlParams>();
@@ -28,8 +15,6 @@ export function RegistrationConfirm() {
     useEffect(() => {
         confirmRegistration();
     }, []);
-
-    let history = useHistory();
 
     function confirmRegistration() {
         HttpClient.patch<any>(`userAccess/userRegistrations/${registrationId}/confirm`, null)
