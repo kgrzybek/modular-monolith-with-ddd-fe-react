@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
 import {
-    BrowserRouter as Router,
-    Route,
     Link
 } from 'react-router-dom';
 import { MyMeetingGroupProposalsList } from './my-meeting-group-proposals-list';
 import { MyMeetingGroupsList } from './my-meeting-groups-list';
+import React from 'react';
 
 export function MyMeetingsGroups() {
 

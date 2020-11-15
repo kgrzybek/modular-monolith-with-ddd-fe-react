@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-    BrowserRouter as Router,
-    Route,
     Link
 } from 'react-router-dom';
 import { HttpClient } from '../../shared/http-client';
@@ -14,7 +12,6 @@ interface SubscriptionDetails {
 }
 
 export function SubscriptionDetails() {
-
     const [subscriptionDetails, setSubscriptionDetails] = useState<SubscriptionDetails | null>(null);
 
     useEffect(() => {

@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-    BrowserRouter as Router,
-    useLocation,
-    Link,
     useHistory
 } from "react-router-dom";
 import { HttpClient } from '../../shared/http-client';
@@ -45,18 +42,18 @@ export function AllMeetingGrups() {
                     <th>Country</th>
                     <th>Role</th>
                 </thead>
-                
-                {meetingGroups.map(item =>  
-                <tbody>
-                <td>{item.name} </td>
-                <td>{item.description} </td>
-                <td>{item.locationCity} </td>
-                <td>{item.locationCountryCode} </td>
-                <td>{item.roleCode} </td>
-                <td><button onClick={() => onClick(item.id)}>Go to group</button></td>
-                </tbody>
-                 )}
-                
+
+                {meetingGroups.map(item =>
+                    <tbody>
+                        <td>{item.name} </td>
+                        <td>{item.description} </td>
+                        <td>{item.locationCity} </td>
+                        <td>{item.locationCountryCode} </td>
+                        <td>{item.roleCode} </td>
+                        <td><button onClick={() => onClick(item.id)}>Go to group</button></td>
+                    </tbody>
+                )}
+
             </table>
         </div>
     )

@@ -48,16 +48,15 @@ export function SubscriptionBuy() {
 
     function loadCountries() {
         HttpClient.get<Array<Country>>('api/meetings/countries')
-            .then(response => setCountries(response));
+            .then(response => setCountries(response))
+            .catch(_ => { });
     }
 
     function getPrice() {
         HttpClient.get<MoneyValue>(`api/payments/priceListItems?countryCode=${countryCode}&categoryCode=New&periodTypeCode=${typeCode}`)
-        .then(response => {
-            console.log(response);
-            setPrice(new SubscriptionPrice(response.value, response.currency));
-
-        });
+            .then(response => {
+                setPrice(new SubscriptionPrice(response.value, response.currency));
+            }).catch(_ => { });
     }
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -71,8 +70,7 @@ export function SubscriptionBuy() {
         HttpClient.post<Response>('api/payments/subscriptions', JSON.stringify(request))
             .then((response) => response.json() as unknown as string)
             .then((paymentId) => history.push(`/subscription/payment-status?paymentId=${paymentId}`))
-            .catch(onrejected => {
-            });
+            .catch(_ => { });
 
         event.preventDefault();
     }
@@ -89,22 +87,22 @@ export function SubscriptionBuy() {
         <div className="container">
             <form onSubmit={handleSubmit}>
                 <div>
-                <div>Period: </div>
+                    <div>Period: </div>
                     <div>
-                        <select name="Period" 
-                        onChange={handlePeriodChange} 
-                        onLoadedData={handlePeriodChange} 
-                        value={countryCode}>
+                        <select name="Period"
+                            onChange={handlePeriodChange}
+                            onLoadedData={handlePeriodChange}
+                            value={countryCode}>
                             <option label="Month" value={SubscriptionType.MONTH}></option>
                             <option label="6 months" value={SubscriptionType.HALF_YEAR}></option>
                         </select>
                     </div>
                     <div>Country: </div>
                     <div>
-                        <select name="Country" 
-                        onChange={handleCountryChange} 
-                        onLoadedData={handleCountryChange} 
-                        value={countryCode}>
+                        <select name="Country"
+                            onChange={handleCountryChange}
+                            onLoadedData={handleCountryChange}
+                            value={countryCode}>
                             {countries.map(item =>
                                 <option label={item.name} value={item.code}></option>)}
                         </select>
